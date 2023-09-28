@@ -7,6 +7,7 @@
 #include "InputActionValue.h"
 #include "ExampleProject_MMECharacter.generated.h"
 
+class UCustomCharacterMovementComponent;
 
 UCLASS(config=Game)
 class AExampleProject_MMECharacter : public ACharacter
@@ -49,6 +50,10 @@ protected:
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
 			
+	// Used to store the custom character movement component
+	// override for character movement component
+	UPROPERTY()
+	UCustomCharacterMovementComponent* CustomCharacterMovementComponent = nullptr;
 
 protected:
 	// APawn interface
@@ -58,6 +63,8 @@ protected:
 	virtual void BeginPlay();
 
 public:
+	/** Returns CustomCharacterMovementComponent override*/
+	UCustomCharacterMovementComponent* GetCustomCharacterMovementComponent();
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/

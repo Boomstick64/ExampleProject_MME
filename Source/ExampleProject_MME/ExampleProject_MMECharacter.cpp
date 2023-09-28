@@ -26,6 +26,9 @@ AExampleProject_MMECharacter::AExampleProject_MMECharacter(const class FObjectIn
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
 
+	// Calling the getter to ensure the custom movement component is set
+	GetCustomCharacterMovementComponent();
+
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f); // ...at this rotation rate
@@ -126,6 +129,22 @@ void AExampleProject_MMECharacter::Look(const FInputActionValue& Value)
 	}
 }
 
+/// <summary>
+/// The getter that returns the custom character
+/// movement component
+/// </summary>
+/// <returns>It will return the custom character movement variable</returns>
+UCustomCharacterMovementComponent* AExampleProject_MMECharacter::GetCustomCharacterMovementComponent()
+{
+	// If custom movement component is nullptr
+	if (CustomCharacterMovementComponent == nullptr)
+	{
+		// Then Complete a static_cast to set it from the gotten character movement
+		// component. A static_cast is done to ensure at compile time the movement 
+		// component has been overriden
+		CustomCharacterMovementComponent = static_cast<UCustomCharacterMovementComponent*>(GetCharacterMovement());
+	}
 
-
-
+	// Then return custom character movement component
+	return CustomCharacterMovementComponent;
+}
