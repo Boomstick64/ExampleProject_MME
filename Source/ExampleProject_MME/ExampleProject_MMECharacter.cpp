@@ -10,11 +10,13 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 
+#include "CustomCharacterMovementComponent.h"
+
 
 //////////////////////////////////////////////////////////////////////////
 // AExampleProject_MMECharacter
 
-AExampleProject_MMECharacter::AExampleProject_MMECharacter()
+AExampleProject_MMECharacter::AExampleProject_MMECharacter(const class FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<UCustomCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);

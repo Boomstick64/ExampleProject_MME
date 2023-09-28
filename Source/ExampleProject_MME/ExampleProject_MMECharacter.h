@@ -38,7 +38,7 @@ class AExampleProject_MMECharacter : public ACharacter
 	class UInputAction* LookAction;
 
 public:
-	AExampleProject_MMECharacter();
+	AExampleProject_MMECharacter(const class FObjectInitializer& ObjectInitializer);
 	
 
 protected:
